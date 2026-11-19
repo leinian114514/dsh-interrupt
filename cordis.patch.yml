@@ -1,0 +1,12 @@
+- insert:
+    - id: interrupt
+      name: dsh-interrupt
+      # webServer = 挂 HTTP 路由；agents = pre-step 钩子里拿 agent.session
+      inject: [webServer, agents]
+      config:
+        # 单会话最多攒多少条（超了丢最旧的）
+        maxKeep: 20
+        # 攒下的消息多久没被取走就作废（分钟）
+        ttlMinutes: 30
+        # 调试日志：重启后看这个文件就知道路由和注入有没有干活
+        # debugFile: 想留一份可核查的日志就填本地路径；不填则不写文件
